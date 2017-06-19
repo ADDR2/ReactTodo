@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+let webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -21,6 +21,10 @@ module.exports = {
     filename: './public/bundle.js'
   },
   resolve: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'app/components')
+    ],
     alias: {
       applicationStyles: __dirname+'/app/styles/app.scss'
     },
