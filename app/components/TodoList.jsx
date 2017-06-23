@@ -13,11 +13,11 @@ export default class TodoList extends React.Component {
 
     render(){
 
-        let { todos } = this.props;
+        let { todos, onToggle } = this.props;
 
         return (
             <div>
-                { todos.map( todo => <Todo key={todo.id} {...todo} /> ) }
+                { todos.map( todo => <Todo key={todo.id} {...todo} onToggle={onToggle}/> ) }
             </div>
         );
     }
