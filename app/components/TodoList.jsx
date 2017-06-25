@@ -17,7 +17,8 @@ export default class TodoList extends React.Component {
 
         return (
             <div>
-                { todos.map( todo => <Todo key={todo.id} {...todo} onToggle={onToggle}/> ) }
+                { todos.length > 0 && todos.map( todo => <Todo key={todo.id} {...todo} onToggle={onToggle}/> ) }
+                { todos.length <= 0 && <p className="container__message">Nothing To Do</p> }
             </div>
         );
     }
