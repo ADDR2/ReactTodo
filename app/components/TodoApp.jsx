@@ -4,6 +4,7 @@ import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 import uuid from 'node-uuid';
 import TodoAPI from 'TodoAPI';
+import moment from 'moment';
 
 export default class TodoApp extends React.Component {
 
@@ -28,7 +29,9 @@ export default class TodoApp extends React.Component {
                {
                     id: uuid(),
                     text,
-                    completed: false
+                    completed: false,
+                    createdAt: moment().unix(),
+                    completedAt: undefined
                }
            ] 
         });
@@ -36,8 +39,10 @@ export default class TodoApp extends React.Component {
 
     handleToggle(id){
         let newTodos = this.state.todos.map((todo) => {
-            if(todo.id === id)
+            if(todo.id === id){
                 todo.completed = !todo.completed;
+                todo.completedAt = todo.completed ? moment().unix() : undefined;
+            }
             return todo
         });
 
