@@ -1,49 +1,50 @@
-let webpack = require('webpack');
-const path = require('path');
+let webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
   entry: [
-    'script-loader!jquery/dist/jquery.min.js',
-    'script-loader!foundation-sites/dist/foundation.min.js',
-    './app/app.jsx'
+    "script-loader!jquery/dist/jquery.min.js",
+    "script-loader!foundation-sites/dist/foundation.min.js",
+    "./app/app.jsx"
   ],
   externals: {
-    jquery: 'jQuery'
+    jquery: "jQuery"
   },
   plugins: [
     new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
+      $: "jquery",
+      jQuery: "jquery"
     })
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: "./public/bundle.js"
   },
   resolve: {
     modules: [
-      'node_modules',
-      path.resolve(__dirname, 'app/components'),
-      path.resolve(__dirname, 'app/api'),
-      path.resolve(__dirname, 'app/actions'),
-      path.resolve(__dirname, 'app/reducers')
+      "node_modules",
+      path.resolve(__dirname, "app/components"),
+      path.resolve(__dirname, "app/api"),
+      path.resolve(__dirname, "app/actions"),
+      path.resolve(__dirname, "app/reducers"),
+      path.resolve(__dirname, "app/store")
     ],
     alias: {
-      applicationStyles: __dirname+'/app/styles/app.scss'
+      applicationStyles: __dirname + "/app/styles/app.scss"
     },
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
   module: {
     loaders: [
       {
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['react', 'es2015', 'stage-0']
+          presets: ["react", "es2015", "stage-0"]
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
       }
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: "cheap-module-eval-source-map"
 };
