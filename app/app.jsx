@@ -1,6 +1,7 @@
 let React = require("react");
 let ReactDOM = require("react-dom");
 import { Route, Router, IndexRoute, hashHistory } from "react-router";
+import { Provider } from "react-redux";
 import TodoApp from "TodoApp";
 import {
   setSearchText,
@@ -25,4 +26,9 @@ $(document).foundation();
 //App css
 require("style-loader!css-loader!sass-loader!applicationStyles");
 
-ReactDOM.render(<TodoApp />, document.getElementById("app"));
+ReactDOM.render(
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
+  document.getElementById("app")
+);
