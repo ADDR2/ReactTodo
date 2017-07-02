@@ -3,9 +3,11 @@ import ReactDOM from "react-dom";
 import expect from "expect";
 import $ from "jQuery";
 import TestUtils from "react-dom/test-utils";
+import { Provider } from "react-redux";
 
-import connectedTodoList, { TodoList } from "TodoList";
-import Todo from "Todo";
+import ConnectedTodoList, { TodoList } from "TodoList";
+import ConnectedTodo, { Todo } from "Todo";
+import { configure } from "configureStore";
 
 describe("TodoList", () => {
   it("should exist", () => {
@@ -16,17 +18,33 @@ describe("TodoList", () => {
     let todos = [
       {
         id: 1,
-        text: "Do something"
+        text: "Do something",
+        completed: false,
+        completedAt: undefined,
+        createdAt: 500
       },
       {
         id: 2,
-        text: "Check mail"
+        text: "Check mail",
+        completed: false,
+        completedAt: undefined,
+        createdAt: 500
       }
     ];
-    let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos} />);
-    let todosComponents = TestUtils.scryRenderedComponentsWithType(
+
+    const store = configure({
+      todos
+    });
+    const provider = TestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <ConnectedTodoList/>
+      </Provider>
+    );
+
+    const todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
+    const todosComponents = TestUtils.scryRenderedComponentsWithType(
       todoList,
-      Todo
+      ConnectedTodo
     );
 
     expect(todosComponents.length).toBe(todos.length);
