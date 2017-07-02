@@ -47,6 +47,26 @@ describe("Reducers", () => {
       expect(res[0].text).toEqual(action.text);
     });
 
+    it("should add initial todos", () => {
+      const action = {
+        type: "ADD_TODOS",
+        todos: [
+          {
+            id: '111',
+            text: 'anything',
+            completed: false,
+            completedAt: undefined,
+            createdAt: 33000
+          }
+        ]
+      };
+
+      const res = todosReducer(df([]), df(action));
+
+      expect(res.length).toEqual(1);
+      expect(res).toEqual(action.todos);
+    });
+
     it("should toggle todo", () => {
       const action = {
         type: "TOGGLE_TODO",

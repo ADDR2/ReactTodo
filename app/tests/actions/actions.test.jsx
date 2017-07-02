@@ -2,6 +2,7 @@ import expect from 'expect';
 import {
     setSearchText,
     addTodo,
+    addTodos,
     toggleShowCompleted,
     toggleTodo
 } from 'actions';
@@ -40,6 +41,26 @@ describe('Actions', () => {
             ['text'],
             ['Thing to do'],
             addTodo
+        );
+
+        expect(build.second).toEqual(build.first);
+    });
+
+    it('should generate add todos action', () => {
+
+        const build = buildAction(
+            'ADD_TODOS',
+            ['todos'],
+            [[
+                {
+                    id: '111',
+                    text: 'anything',
+                    completed: false,
+                    completedAt: undefined,
+                    createdAt: 33000
+                }
+            ]],
+            addTodos
         );
 
         expect(build.second).toEqual(build.first);

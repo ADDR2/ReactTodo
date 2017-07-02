@@ -6,14 +6,21 @@ import TodoApp from "TodoApp";
 import {
   setSearchText,
   addTodo,
+  addTodos,
   toggleShowCompleted,
   toggleTodo
 } from "actions";
+import TodoAPI from "TodoAPI";
 const store = require("configureStore").configure();
 
 store.subscribe(() => {
-  console.log("New state", store.getState());
+  const state = store.getState();
+  console.log("New state", state);
+  TodoAPI.setTodos(state.todos);
 });
+
+const initialTodos = TodoAPI.getTodos();
+store.dispatch(addTodos(initialTodos));
 
 //load foundation
 //require('style-loader!css-loader!foundation-sites/dist/foundation.min.css');
