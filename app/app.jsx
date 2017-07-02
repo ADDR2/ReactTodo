@@ -15,10 +15,6 @@ store.subscribe(() => {
   console.log("New state", store.getState());
 });
 
-store.dispatch(addTodo("Walk the dog"));
-store.dispatch(setSearchText("Walk"));
-store.dispatch(toggleShowCompleted());
-
 //load foundation
 //require('style-loader!css-loader!foundation-sites/dist/foundation.min.css');
 $(document).foundation();
