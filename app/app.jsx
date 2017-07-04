@@ -13,8 +13,6 @@ import {
 import TodoAPI from "TodoAPI";
 const store = require("configureStore").configure();
 
-import './../playground/firebase/index';
-
 store.subscribe(() => {
   const state = store.getState();
   console.log("New state", state);

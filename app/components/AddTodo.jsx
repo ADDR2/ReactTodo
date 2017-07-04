@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  addTodo
+  startAddTodo
 } from "actions";
 
 export class AddTodo extends React.Component {
@@ -19,7 +19,7 @@ export class AddTodo extends React.Component {
 
         if(todoText.length > 0){
             this.refs.todoText.value = '';
-            dispatch(addTodo(todoText));
+            dispatch(startAddTodo(todoText));
         }else{
             this.refs.todoText.focus();
         }

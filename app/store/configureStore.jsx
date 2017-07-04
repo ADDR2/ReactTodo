@@ -1,4 +1,5 @@
-const redux = require("redux");
+import * as redux from "redux";
+import thunk from 'redux-thunk';
 import {
   searchTextReducer,
   showCompletedReducer,
@@ -16,6 +17,7 @@ export const configure = (initialState = {}) => {
     reducer,
     initialState,
     redux.compose(
+      redux.applyMiddleware(thunk),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
