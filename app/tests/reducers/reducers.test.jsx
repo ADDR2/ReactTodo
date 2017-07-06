@@ -39,8 +39,8 @@ describe("Reducers", () => {
       const action = {
         type: "ADD_TODO",
         todo: {
-          id: 'abc123',
-          text: 'Walk the dog',
+          id: "abc123",
+          text: "Walk the dog",
           completed: false,
           createdAt: 8047397
         }
@@ -57,8 +57,8 @@ describe("Reducers", () => {
         type: "ADD_TODOS",
         todos: [
           {
-            id: '111',
-            text: 'anything',
+            id: "111",
+            text: "anything",
             completed: false,
             completedAt: undefined,
             createdAt: 33000
@@ -72,27 +72,34 @@ describe("Reducers", () => {
       expect(res).toEqual(action.todos);
     });
 
-    it("should toggle todo", () => {
-      const action = {
-        type: "TOGGLE_TODO",
-        id: "123"
-      };
-
+    it("should update todo", () => {
       const todos = [
         {
           id: "123",
           text: "Hey there",
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
+          completed: true,
+          createdAt: 123,
+          completedAt: 125
         }
       ];
+
+      const updates = {
+        completed: false,
+        completedAt: null
+      };
+
+      const action = {
+        type: "UPDATE_TODO",
+        id: todos[0].id,
+        updates
+      };
 
       const res = todosReducer(df(todos), df(action));
 
       expect(res.length).toEqual(1);
-      expect(res[0].completed).toEqual(true);
-      expect(res[0].completedAt).toExist();
+      expect(res[0].completed).toEqual(updates.completed);
+      expect(res[0].completedAt).toEqual(updates.completedAt);
+      expect(res[0].text).toEqual(todos[0].text);
     });
   });
 });
