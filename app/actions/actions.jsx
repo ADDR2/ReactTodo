@@ -43,6 +43,31 @@ export const addTodos = todos => {
   };
 };
 
+export const startAddTodos = () => {
+  return (dispatch, getState) => {
+    return firebaseRef.child("todos").once("value").then(
+      snapshot => {
+        const allObjects = snapshot.val();
+        console.log("Got all todos", snapshot.val());
+
+        let todos = [];
+
+        for (const key in allObjects) {
+          todos.push({
+            id: key,
+            ...allObjects[key]
+          });
+        }
+
+        dispatch(addTodos(todos));
+      },
+      error => {
+        console.log("Unable to fetch data", error);
+      }
+    );
+  };
+};
+
 export const toggleShowCompleted = () => {
   return {
     type: "TOGGLE_SHOW_COMPLETED"

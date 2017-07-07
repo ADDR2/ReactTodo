@@ -13,11 +13,13 @@ export class TodoList extends React.Component {
   render() {
     let { todos, showCompleted, searchText } = this.props;
 
+    const filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+
     return (
       <div>
-        {todos.length > 0 &&
-          TodoAPI.filterTodos(todos, showCompleted, searchText).map(todo => <Todo key={todo.id} {...todo} />)}
-        {todos.length <= 0 &&
+        {filteredTodos.length > 0 &&
+          filteredTodos.map(todo => <Todo key={todo.id} {...todo} />)}
+        {filteredTodos.length <= 0 &&
           <p className="container__message">Nothing To Do</p>}
       </div>
     );
