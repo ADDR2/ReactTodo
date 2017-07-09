@@ -2,12 +2,12 @@ import firebase from 'firebase';
 
 try {
     const config = {
-        apiKey: "AIzaSyBjRkTjMGt6d-XdUn4pZicQmBDGAsEjjxc",
-        authDomain: "amaro-todo-app.firebaseapp.com",
-        databaseURL: "https://amaro-todo-app.firebaseio.com",
-        projectId: "amaro-todo-app",
-        storageBucket: "amaro-todo-app.appspot.com",
-        messagingSenderId: "89084095529"
+        apiKey: process.env.API_KEY,
+        authDomain: process.env.AUTH_DOMAIN,
+        databaseURL: process.env.DATABASE_URL,
+        projectId: process.env.PROJECT_ID,
+        storageBucket: process.env.STORAGE_BUCKET,
+        messagingSenderId: process.env.MESSAGING_SENDER_ID
     };
     firebase.initializeApp(config);
 } catch (e) {
