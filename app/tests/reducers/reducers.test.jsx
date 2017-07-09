@@ -4,7 +4,8 @@ import moment from "moment";
 import {
   searchTextReducer,
   showCompletedReducer,
-  todosReducer
+  todosReducer,
+  authReducer
 } from "reducers";
 
 describe("Reducers", () => {
@@ -100,6 +101,36 @@ describe("Reducers", () => {
       expect(res[0].completed).toEqual(updates.completed);
       expect(res[0].completedAt).toEqual(updates.completedAt);
       expect(res[0].text).toEqual(todos[0].text);
+    });
+  });
+
+  describe("authReducer", () => {
+
+    it("should store uid on LOGIN", () => {
+      const action = {
+        type: "LOGIN",
+        uid: '123'
+      };
+
+      const res = authReducer(undefined, df(action));
+
+      expect(res).toEqual({
+        uid: action.uid
+      });
+    });
+
+    it("should wipe auth on LOGOUT", () => {
+      const action = {
+        type: "LOGOUT"
+      };
+
+      const authData = {
+        uid: '123'
+      };
+
+      const res = authReducer(df(authData), df(action));
+
+      expect(res).toEqual({});
     });
   });
 });

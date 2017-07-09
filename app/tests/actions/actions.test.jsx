@@ -11,7 +11,9 @@ import {
   toggleShowCompleted,
   updateTodo,
   startToggleTodo,
-  startAddTodos
+  startAddTodos,
+  login,
+  logout
 } from "actions";
 
 function buildAction(type, nameAttrs, valueAttrs, action) {
@@ -122,6 +124,28 @@ describe("Actions", () => {
         }
       ],
       updateTodo
+    );
+
+    expect(build.second).toEqual(build.first);
+  });
+
+  it("should generate login action object", () => {
+    const build = buildAction(
+      "LOGIN",
+      ["uid"],
+      ["123"],
+      login
+    );
+
+    expect(build.second).toEqual(build.first);
+  });
+
+  it("should generate logout action object", () => {
+    const build = buildAction(
+      "LOGOUT",
+      [],
+      [],
+      logout
     );
 
     expect(build.second).toEqual(build.first);

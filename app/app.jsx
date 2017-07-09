@@ -5,17 +5,22 @@ import { Provider } from "react-redux";
 import firebase from "index";
 
 import {
-  startAddTodos
+  startAddTodos,
+  login,
+  logout
 } from "actions";
 import router from 'router';
 
 const store = require("configureStore").configure();
 
 firebase.auth().onAuthStateChanged((user) => {
-  if(user)
+  if(user){
+    store.dispatch(login(user.uid));
     hashHistory.push('/todos');
-  else
+  } else {
+    store.dispatch(logout());
     hashHistory.push('/');
+  }
 });
 
 store.dispatch(startAddTodos());
