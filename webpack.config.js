@@ -53,7 +53,8 @@ module.exports = {
       path.resolve(__dirname, "app/actions"),
       path.resolve(__dirname, "app/reducers"),
       path.resolve(__dirname, "app/store"),
-      path.resolve(__dirname, "app/firebase")
+      path.resolve(__dirname, "app/firebase"),
+      path.resolve(__dirname, "app/router")
     ],
     alias: {
       applicationStyles: __dirname + "/app/styles/app.scss"
