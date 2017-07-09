@@ -16,14 +16,13 @@ const store = require("configureStore").configure();
 firebase.auth().onAuthStateChanged((user) => {
   if(user){
     store.dispatch(login(user.uid));
+    store.dispatch(startAddTodos());
     hashHistory.push('/todos');
   } else {
     store.dispatch(logout());
     hashHistory.push('/');
   }
 });
-
-store.dispatch(startAddTodos());
 
 //load foundation
 //require('style-loader!css-loader!foundation-sites/dist/foundation.min.css');
