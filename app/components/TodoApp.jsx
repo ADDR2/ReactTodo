@@ -1,16 +1,30 @@
 import React from "react";
+import { connect } from 'react-redux';
+import {
+  startLogout
+} from "actions";
 import TodoList from "TodoList";
 import AddTodo from "AddTodo";
 import TodoSearch from "TodoSearch";
-import uuid from "node-uuid";
-import moment from "moment";
 
-export default class TodoApp extends React.Component {
+export class TodoApp extends React.Component {
+  
+  onLogout(event) {
+    event.preventDefault();
+
+    const { dispatch } = this.props;
+
+    dispatch(startLogout());    
+  }
 
   render() {
-
     return (
       <div>
+
+        <div className="page-actions">
+          <a href="#" onClick={this.onLogout.bind(this)}>Logout</a>
+        </div>
+
         <h1 className="page-title">Todo App</h1>
 
         <div className="row">
@@ -26,3 +40,5 @@ export default class TodoApp extends React.Component {
     );
   }
 }
+
+export default connect()(TodoApp);
