@@ -73,6 +73,25 @@ describe("Reducers", () => {
       expect(res).toEqual(action.todos);
     });
 
+    it("should wipe todos on clear todos", () => {
+      const todos = [
+        {
+          id: "111",
+          text: "anything",
+          completed: false,
+          completedAt: undefined,
+          createdAt: 33000
+        }
+      ];
+      const action = {
+        type: "LOGOUT"
+      };
+
+      const res = todosReducer(df(todos), df(action));
+
+      expect(res.length).toEqual(0);
+    });
+
     it("should update todo", () => {
       const todos = [
         {
